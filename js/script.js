@@ -17,18 +17,15 @@ const getTotalTaxes = function () {
 const getMySalary = (country) => {
     const minSalary = 1500;
     const maxSalary = 2000;
-    const mySalary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
-    const myTaxes = +getMyTaxes.call(country, mySalary).toFixed(2);
-    const myProfit = +(mySalary - myTaxes).toFixed(2);
+    const salary = Math.floor(Math.random() * (maxSalary - minSalary + 1)) + minSalary;
+    const taxes = +getMyTaxes.call(country, salary).toFixed(2);
+    const profit = +(salary - taxes).toFixed(2);
 
-    return setInterval(() => console.log({
-        salary: mySalary,
-        taxes: myTaxes,
-        profit: myProfit
-    }), 10000);
+    return console.log({salary, taxes, profit});
 };
 
 console.log(`Ви заплатите такий податок - ${getMyTaxes.call(ukraine, 2000)}$;
 Загалом IT- спеціалісти платять ${getMiddleTaxes.call(latvia)}$ податку;
 Крім того, всі IT-спеціалісти разом платять податок у розмірі - ${getTotalTaxes.call(ukraine)}$`);
-getMySalary(ukraine);
+
+setInterval(() => getMySalary(ukraine), 10000);
